@@ -15,27 +15,28 @@ def parse_dataset():
     val_ds = tfds.load('fashion_mnist', split='train[-10%:]', data_dir=DATA_DIR, as_supervised=True)
     test_ds = tfds.load('fashion_mnist', split='test', data_dir=DATA_DIR, as_supervised=True)
 
-    def normalize_img(image, label):
-        """Convert [0,255] -> [0,1] and cast label to int."""
+    # Flatten image 
+    def preprocess_img(image, label):
         image = tf.cast(image, tf.float32) / 255.0
+        image = tf.reshape(image, [-1])
         return image, label
 
     BATCH_SIZE = 32
     BUFFER_SIZE = 1024
 
     train_ds = (train_ds
-                .map(normalize_img, num_parallel_calls=tf.data.AUTOTUNE)
+                .map(preprocess_img, num_parallel_calls=tf.data.AUTOTUNE)
                 .shuffle(BUFFER_SIZE)
                 .batch(BATCH_SIZE)
                 .prefetch(tf.data.AUTOTUNE))
 
     val_ds = (val_ds
-            .map(normalize_img, num_parallel_calls=tf.data.AUTOTUNE)
+            .map(preprocess_img, num_parallel_calls=tf.data.AUTOTUNE)
             .batch(BATCH_SIZE)
             .prefetch(tf.data.AUTOTUNE))
 
     test_ds = (test_ds
-            .map(normalize_img, num_parallel_calls=tf.data.AUTOTUNE)
+            .map(preprocess_img, num_parallel_calls=tf.data.AUTOTUNE)
             .batch(BATCH_SIZE)
             .prefetch(tf.data.AUTOTUNE))
     
