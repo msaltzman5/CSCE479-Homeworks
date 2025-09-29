@@ -14,6 +14,8 @@ def main():
     # 2 different hyperparameters: (i.e., learning rates, batch size)
     # 2 different reglularizations (i.e., dropout, L2 regularization)
 
+    # NEXT TODO: implement another model with different hyperparameters
+
     # Testing model
     model = Model()
 
