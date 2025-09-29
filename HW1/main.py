@@ -2,7 +2,7 @@ import model
 import util
 
 def main():
-    util.test()
+    train_ds, val_ds, train_ds = util.parse_dataset()
 
 
 if __name__ == '__main__':
