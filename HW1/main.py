@@ -27,6 +27,13 @@ def run(name, hidden_units, learning_rate, dropout, l2, train_ds, val_ds, test_d
     print("Test Confusion Matrix (rows=true, cols=pred):")
     print(test_conf_matrix)
 
+    # Confidence intervals
+    n_test = sum(1 for _ in test_ds.unbatch())
+    
+    ci_low, ci_high = util.confidence_interval(test_metrics['accuracy'], n_test)
+
+    print(f"95% CI for test accuracy: [{ci_low:.4f}, {ci_high:.4f}]")
+
 
 def main():
     train_ds, val_ds, test_ds = util.parse_dataset()

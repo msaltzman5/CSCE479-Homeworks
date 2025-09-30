@@ -4,6 +4,10 @@ import tensorflow_datasets as tfds
 import matplotlib.pyplot as plt    
 from tqdm import tqdm              
 import os
+import math
+
+CLASS_NAMES = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
+                   "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
 def parse_dataset():
     DATA_DIR = './tensorflow-datasets/'
@@ -51,3 +55,12 @@ def confusion_matrix(model, ds):
     y_pred = tf.concat(y_pred, axis=0)
     cm = tf.math.confusion_matrix(y_true, y_pred, num_classes=10)
     return cm
+
+def confidence_interval(acc, n):
+    z = 1.96  # z value for 95% confidence
+    stderr = math.sqrt(acc * (1 - acc) / n)  # standard error formula
+    lower_bound = max(0.0, acc - z * stderr)
+    upper_bound = min(1.0, acc + z * stderr)
+    return lower_bound, upper_bound
+
+
