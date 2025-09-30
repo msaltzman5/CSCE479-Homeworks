@@ -6,18 +6,19 @@
 import tensorflow as tf
 
 class Model(tf.keras.Model):
-    def __init__(self, hidden_units=[256, 128], dropout_rates=[0.3, 0.5], num_classes=10):
+    def __init__(self, hidden_units, learning_rate, dropout, l2, num_classes=10):
         # Inherit from tf.keras.Model
         super(Model, self).__init__()
 
-        assert len(hidden_units) == len(dropout_rates), \
-            "hidden_units and dropout_rates lists must have the same length."
+        self.hidden_layers = [tf.keras.layers.Rescaling(1.0/255.0)]
 
-        self.hidden_layers = []
-        for units, rate in zip(hidden_units, dropout_rates):
-            self.hidden_layers.append(tf.keras.layers.Dense(units, activation="relu"))
-            if rate > 0.0:
-                self.hidden_layers.append(tf.keras.layers.Dropout(rate))
+        reg = tf.keras.regularizers.l2(l2) if l2 > 0 else None
+
+        for hu in hidden_units:
+            self.hidden_layers.append(tf.keras.layers.Dense(hu, activation="relu", kernel_regularizer=reg))
+            # Even droput for all layers
+            if dropout and dropout > 0:
+                self.hidden_layers.append(tf.keras.layers.Dropout(dropout))
 
         # Output layer: size = number of classes, activation = softmax
         self.output_layer = tf.keras.layers.Dense(num_classes, activation="softmax")

@@ -1,12 +1,11 @@
+import numpy as np                 
+import tensorflow as tf            
+import tensorflow_datasets as tfds 
+import matplotlib.pyplot as plt    
+from tqdm import tqdm              
+import os
+
 def parse_dataset():
-    import numpy as np                 # to use numpy arrays
-    import tensorflow as tf            # to specify and run computation graphs
-    import tensorflow_datasets as tfds # to load training data
-    import matplotlib.pyplot as plt    # to visualize data and draw plots
-    from tqdm import tqdm              # to track progress of loops
-    import os
-
-
     DATA_DIR = './tensorflow-datasets/'
 
     ds = tfds.load('fashion_mnist', data_dir=DATA_DIR, shuffle_files=True, as_supervised=True) # this loads a dict with the datasets
@@ -39,8 +38,16 @@ def parse_dataset():
             .map(preprocess_img, num_parallel_calls=tf.data.AUTOTUNE)
             .batch(BATCH_SIZE)
             .prefetch(tf.data.AUTOTUNE))
-    
-    print(train_ds)
-    print("dataset parsed")
 
     return train_ds, val_ds, test_ds
+
+def confusion_matrix(model, ds):
+    y_true, y_pred = [], []
+    for x, y in ds:
+        p = tf.argmax(model(x, training=False), axis=-1)
+        y_true.append(y)
+        y_pred.append(p)
+    y_true = tf.concat(y_true, axis=0)
+    y_pred = tf.concat(y_pred, axis=0)
+    cm = tf.math.confusion_matrix(y_true, y_pred, num_classes=10)
+    return cm
