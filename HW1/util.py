@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm              
 import os
 import math
+import seaborn as sns
 
 CLASS_NAMES = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
-                   "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
+               "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
 def parse_dataset():
     DATA_DIR = './tensorflow-datasets/'
@@ -45,15 +46,29 @@ def parse_dataset():
 
     return train_ds, val_ds, test_ds
 
-def confusion_matrix(model, ds):
+def confusion_matrix_plot(model, ds, filename, class_names=CLASS_NAMES):
     y_true, y_pred = [], []
     for x, y in ds:
         p = tf.argmax(model(x, training=False), axis=-1)
-        y_true.append(y)
-        y_pred.append(p)
-    y_true = tf.concat(y_true, axis=0)
-    y_pred = tf.concat(y_pred, axis=0)
-    cm = tf.math.confusion_matrix(y_true, y_pred, num_classes=10)
+        y_true.extend(y.numpy())
+        y_pred.extend(p.numpy())
+    cm = tf.math.confusion_matrix(y_true, y_pred, num_classes=len(class_names)).numpy()
+    
+    # Normalize so values are percentages
+    cm_norm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
+
+    # Plot
+    plt.figure(figsize=(8,6))
+    sns.heatmap(cm_norm, annot=True, fmt=".2f", cmap="Blues",
+                xticklabels=class_names, yticklabels=class_names)
+
+    plt.xlabel("Predicted Label")
+    plt.ylabel("True Label")
+    plt.title("Confusion Matrix (normalized)")
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.close()
+
     return cm
 
 def confidence_interval(acc, n):

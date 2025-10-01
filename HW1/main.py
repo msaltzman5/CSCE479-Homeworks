@@ -22,10 +22,9 @@ def run(name, hidden_units, learning_rate, dropout, l2, train_ds, val_ds, test_d
     print(f"VAL  -> loss={val_metrics['loss']:.4f}  acc={val_metrics['accuracy']:.4f}")
     print(f"TEST -> loss={test_metrics['loss']:.4f} acc={test_metrics['accuracy']:.4f}")
 
-    # Minimal confusion matrices (numbers only, no plots)
-    test_conf_matrix = util.confusion_matrix(model, test_ds).numpy()
-    print("Test Confusion Matrix (rows=true, cols=pred):")
-    print(test_conf_matrix)
+    # Confusion matrix plot
+    util.confusion_matrix_plot(model, test_ds, filename=f"{name}_confusion_matrix.png")
+    print(f"Saved confusion matrix to {name}_confusion_matrix.png")
 
     # Confidence intervals
     n_test = sum(1 for _ in test_ds.unbatch())
