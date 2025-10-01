@@ -1,0 +1,300 @@
+2025-09-30 18:48:41.610702: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-09-30 18:48:43.651356: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1510] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 14618 MB memory:  -> device: 0, name: Quadro RTX 5000, pci bus id: 0000:3b:00.0, compute capability: 7.5
+2025-09-30 18:48:44.370305: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+
+=== A_lr_0.001_drop_0.0_l2_0.0 ===
+arch=[256, 128] lr=0.001 dropout=0.0 l2=0.0 epochs=10
+Epoch 1/10
+1688/1688 - 10s - loss: 0.8159 - accuracy: 0.7019 - val_loss: 0.5665 - val_accuracy: 0.7897
+Epoch 2/10
+1688/1688 - 5s - loss: 0.5385 - accuracy: 0.8056 - val_loss: 0.5108 - val_accuracy: 0.8093
+Epoch 3/10
+1688/1688 - 5s - loss: 0.4766 - accuracy: 0.8282 - val_loss: 0.4551 - val_accuracy: 0.8357
+Epoch 4/10
+1688/1688 - 5s - loss: 0.4414 - accuracy: 0.8420 - val_loss: 0.4236 - val_accuracy: 0.8483
+Epoch 5/10
+1688/1688 - 5s - loss: 0.4168 - accuracy: 0.8493 - val_loss: 0.4154 - val_accuracy: 0.8485
+Epoch 6/10
+1688/1688 - 5s - loss: 0.3989 - accuracy: 0.8559 - val_loss: 0.4115 - val_accuracy: 0.8497
+Epoch 7/10
+1688/1688 - 5s - loss: 0.3834 - accuracy: 0.8597 - val_loss: 0.3820 - val_accuracy: 0.8622
+Epoch 8/10
+1688/1688 - 5s - loss: 0.3716 - accuracy: 0.8651 - val_loss: 0.3795 - val_accuracy: 0.8612
+Epoch 9/10
+1688/1688 - 5s - loss: 0.3598 - accuracy: 0.8695 - val_loss: 0.3682 - val_accuracy: 0.8645
+Epoch 10/10
+1688/1688 - 5s - loss: 0.3503 - accuracy: 0.8720 - val_loss: 0.3588 - val_accuracy: 0.8740
+VAL  -> loss=0.3588  acc=0.8740
+TEST -> loss=0.3895 acc=0.8580
+Test Confusion Matrix (rows=true, cols=pred):
+[[803   0   7  28   4   1 144   0  13   0]
+ [  4 950   0  35   4   0   5   0   2   0]
+ [ 10   0 721  10 132   0 123   0   4   0]
+ [ 29   4   7 853  47   0  52   0   8   0]
+ [  0   1  82  18 786   0 106   0   7   0]
+ [  0   0   0   1   0 930   0  32   4  33]
+ [120   1  82  26  65   0 687   0  19   0]
+ [  0   0   0   0   0  32   0 916   0  52]
+ [  0   1   2   3   5   3  12   4 970   0]
+ [  0   0   0   0   0   6   1  29   0 964]]
+95% CI for test accuracy: [0.8512, 0.8648]
+
+=== A_lr_0.001_drop_0.2_l2_0.0001 ===
+arch=[256, 128] lr=0.001 dropout=0.2 l2=0.0001 epochs=10
+Epoch 1/10
+1688/1688 - 5s - loss: 1.0861 - accuracy: 0.6489 - val_loss: 0.8016 - val_accuracy: 0.7500
+Epoch 2/10
+1688/1688 - 5s - loss: 0.8070 - accuracy: 0.7573 - val_loss: 0.7188 - val_accuracy: 0.7912
+Epoch 3/10
+1688/1688 - 5s - loss: 0.7458 - accuracy: 0.7813 - val_loss: 0.6783 - val_accuracy: 0.8078
+Epoch 4/10
+1688/1688 - 5s - loss: 0.7072 - accuracy: 0.7955 - val_loss: 0.6525 - val_accuracy: 0.8143
+Epoch 5/10
+1688/1688 - 5s - loss: 0.6809 - accuracy: 0.8063 - val_loss: 0.6311 - val_accuracy: 0.8210
+Epoch 6/10
+1688/1688 - 5s - loss: 0.6620 - accuracy: 0.8104 - val_loss: 0.6088 - val_accuracy: 0.8317
+Epoch 7/10
+1688/1688 - 5s - loss: 0.6462 - accuracy: 0.8173 - val_loss: 0.6056 - val_accuracy: 0.8285
+Epoch 8/10
+1688/1688 - 5s - loss: 0.6296 - accuracy: 0.8206 - val_loss: 0.5813 - val_accuracy: 0.8378
+Epoch 9/10
+1688/1688 - 5s - loss: 0.6228 - accuracy: 0.8219 - val_loss: 0.5839 - val_accuracy: 0.8348
+Epoch 10/10
+1688/1688 - 5s - loss: 0.6113 - accuracy: 0.8269 - val_loss: 0.5702 - val_accuracy: 0.8400
+VAL  -> loss=0.5702  acc=0.8400
+TEST -> loss=0.6015 acc=0.8234
+Test Confusion Matrix (rows=true, cols=pred):
+[[756   2  11  56  10   3 145   0  17   0]
+ [  0 940   8  39  10   0   2   0   1   0]
+ [ 10   0 657  10 229   0  85   0   9   0]
+ [ 24   9   9 813  81   1  59   0   4   0]
+ [  0   0  61  15 865   0  51   0   8   0]
+ [  0   0   0   1   0 934   0  27   9  29]
+ [124   2 114  33 181   1 521   0  24   0]
+ [  0   0   0   0   0  84   0 863   0  53]
+ [  0   1   9   4   6   5  15   4 955   1]
+ [  0   0   0   0   0  31   0  38   1 930]]
+95% CI for test accuracy: [0.8159, 0.8309]
+
+=== A_lr_0.0003_drop_0.0_l2_0.0 ===
+arch=[256, 128] lr=0.0003 dropout=0.0 l2=0.0 epochs=10
+Epoch 1/10
+1688/1688 - 5s - loss: 1.0939 - accuracy: 0.6281 - val_loss: 0.7110 - val_accuracy: 0.7375
+Epoch 2/10
+1688/1688 - 5s - loss: 0.6538 - accuracy: 0.7594 - val_loss: 0.6003 - val_accuracy: 0.7740
+Epoch 3/10
+1688/1688 - 5s - loss: 0.5833 - accuracy: 0.7880 - val_loss: 0.5635 - val_accuracy: 0.7935
+Epoch 4/10
+1688/1688 - 5s - loss: 0.5438 - accuracy: 0.8037 - val_loss: 0.5220 - val_accuracy: 0.8120
+Epoch 5/10
+1688/1688 - 5s - loss: 0.5139 - accuracy: 0.8157 - val_loss: 0.5021 - val_accuracy: 0.8208
+Epoch 6/10
+1688/1688 - 5s - loss: 0.4908 - accuracy: 0.8244 - val_loss: 0.4773 - val_accuracy: 0.8297
+Epoch 7/10
+1688/1688 - 5s - loss: 0.4713 - accuracy: 0.8321 - val_loss: 0.4670 - val_accuracy: 0.8330
+Epoch 8/10
+1688/1688 - 5s - loss: 0.4564 - accuracy: 0.8366 - val_loss: 0.4622 - val_accuracy: 0.8360
+Epoch 9/10
+1688/1688 - 5s - loss: 0.4431 - accuracy: 0.8416 - val_loss: 0.4364 - val_accuracy: 0.8432
+Epoch 10/10
+1688/1688 - 5s - loss: 0.4325 - accuracy: 0.8450 - val_loss: 0.4381 - val_accuracy: 0.8435
+VAL  -> loss=0.4381  acc=0.8435
+TEST -> loss=0.4707 acc=0.8305
+Test Confusion Matrix (rows=true, cols=pred):
+[[776   1   8  88   7   3  99   0  18   0]
+ [  0 943   8  38   7   0   3   0   1   0]
+ [ 19   0 697  17 181   0  79   0   7   0]
+ [ 24   9   4 880  40   0  39   0   4   0]
+ [  0   1  82  37 806   0  68   0   6   0]
+ [  0   0   0   1   0 873   0  78   6  42]
+ [144   2 113  68 142   1 498   0  32   0]
+ [  0   0   0   0   0  21   0 947   0  32]
+ [  2   1   4  10   3   5  17   6 952   0]
+ [  0   0   0   0   0  10   0  56   1 933]]
+95% CI for test accuracy: [0.8231, 0.8379]
+
+=== A_lr_0.0003_drop_0.2_l2_0.0001 ===
+arch=[256, 128] lr=0.0003 dropout=0.2 l2=0.0001 epochs=10
+Epoch 1/10
+1688/1688 - 5s - loss: 1.3352 - accuracy: 0.5530 - val_loss: 0.9785 - val_accuracy: 0.7035
+Epoch 2/10
+1688/1688 - 5s - loss: 0.9493 - accuracy: 0.7051 - val_loss: 0.8399 - val_accuracy: 0.7458
+Epoch 3/10
+1688/1688 - 5s - loss: 0.8551 - accuracy: 0.7398 - val_loss: 0.7877 - val_accuracy: 0.7605
+Epoch 4/10
+1688/1688 - 5s - loss: 0.8076 - accuracy: 0.7589 - val_loss: 0.7416 - val_accuracy: 0.7783
+Epoch 5/10
+1688/1688 - 5s - loss: 0.7717 - accuracy: 0.7724 - val_loss: 0.7165 - val_accuracy: 0.7925
+Epoch 6/10
+1688/1688 - 5s - loss: 0.7468 - accuracy: 0.7834 - val_loss: 0.6993 - val_accuracy: 0.8038
+Epoch 7/10
+1688/1688 - 5s - loss: 0.7255 - accuracy: 0.7923 - val_loss: 0.6823 - val_accuracy: 0.8090
+Epoch 8/10
+1688/1688 - 5s - loss: 0.7094 - accuracy: 0.7970 - val_loss: 0.6695 - val_accuracy: 0.8112
+Epoch 9/10
+1688/1688 - 5s - loss: 0.6938 - accuracy: 0.8038 - val_loss: 0.6525 - val_accuracy: 0.8188
+Epoch 10/10
+1688/1688 - 5s - loss: 0.6787 - accuracy: 0.8068 - val_loss: 0.6363 - val_accuracy: 0.8223
+VAL  -> loss=0.6363  acc=0.8223
+TEST -> loss=0.6618 acc=0.8107
+Test Confusion Matrix (rows=true, cols=pred):
+[[808   2  15  78   3   3  74   0  17   0]
+ [  0 933  15  46   3   0   2   0   1   0]
+ [ 18   0 729  12 128   2 105   0   6   0]
+ [ 38   9   9 856  29   0  54   0   5   0]
+ [  0   1 143  40 713   0  98   0   5   0]
+ [  1   0   0   1   0 909   0  41   6  42]
+ [197   3 146  61 118   2 440   0  33   0]
+ [  0   0   0   0   0  71   0 843   0  86]
+ [  1   1   5  12   2   9  30   4 935   1]
+ [  0   0   0   0   0  27   0  31   1 941]]
+95% CI for test accuracy: [0.8030, 0.8184]
+
+=== B_lr_0.001_drop_0.0_l2_0.0 ===
+arch=[512, 256, 128] lr=0.001 dropout=0.0 l2=0.0 epochs=10
+Epoch 1/10
+1688/1688 - 6s - loss: 0.7183 - accuracy: 0.7332 - val_loss: 0.5464 - val_accuracy: 0.7945
+Epoch 2/10
+1688/1688 - 5s - loss: 0.4884 - accuracy: 0.8217 - val_loss: 0.4435 - val_accuracy: 0.8322
+Epoch 3/10
+1688/1688 - 5s - loss: 0.4302 - accuracy: 0.8413 - val_loss: 0.4108 - val_accuracy: 0.8457
+Epoch 4/10
+1688/1688 - 5s - loss: 0.3944 - accuracy: 0.8557 - val_loss: 0.3635 - val_accuracy: 0.8630
+Epoch 5/10
+1688/1688 - 5s - loss: 0.3721 - accuracy: 0.8625 - val_loss: 0.3565 - val_accuracy: 0.8662
+Epoch 6/10
+1688/1688 - 5s - loss: 0.3517 - accuracy: 0.8695 - val_loss: 0.3871 - val_accuracy: 0.8570
+Epoch 7/10
+1688/1688 - 5s - loss: 0.3348 - accuracy: 0.8760 - val_loss: 0.3979 - val_accuracy: 0.8570
+Epoch 8/10
+1688/1688 - 5s - loss: 0.3206 - accuracy: 0.8818 - val_loss: 0.3655 - val_accuracy: 0.8618
+Epoch 9/10
+1688/1688 - 5s - loss: 0.3117 - accuracy: 0.8847 - val_loss: 0.3240 - val_accuracy: 0.8810
+Epoch 10/10
+1688/1688 - 5s - loss: 0.3003 - accuracy: 0.8882 - val_loss: 0.3448 - val_accuracy: 0.8762
+VAL  -> loss=0.3448  acc=0.8762
+TEST -> loss=0.3830 acc=0.8621
+Test Confusion Matrix (rows=true, cols=pred):
+[[823   3  11  75   4   1  76   0   7   0]
+ [  1 961   2  31   3   0   2   0   0   0]
+ [ 14   6 802  21 125   0  31   0   1   0]
+ [ 14   9   5 919  34   1  17   0   1   0]
+ [  0   5 107  32 834   0  22   0   0   0]
+ [  0   0   0   1   0 888   0  58   2  51]
+ [141   3 136  62 129   0 524   0   5   0]
+ [  0   0   0   0   0   8   0 955   0  37]
+ [  6   2   2   9  10   3  10   4 954   0]
+ [  0   0   0   0   0   1   1  37   0 961]]
+95% CI for test accuracy: [0.8553, 0.8689]
+
+=== B_lr_0.001_drop_0.2_l2_0.0001 ===
+arch=[512, 256, 128] lr=0.001 dropout=0.2 l2=0.0001 epochs=10
+Epoch 1/10
+1688/1688 - 6s - loss: 0.9501 - accuracy: 0.6800 - val_loss: 0.6965 - val_accuracy: 0.7903
+Epoch 2/10
+1688/1688 - 6s - loss: 0.7132 - accuracy: 0.7892 - val_loss: 0.7276 - val_accuracy: 0.7732
+Epoch 3/10
+1688/1688 - 6s - loss: 0.6701 - accuracy: 0.8054 - val_loss: 0.6209 - val_accuracy: 0.8223
+Epoch 4/10
+1688/1688 - 6s - loss: 0.6400 - accuracy: 0.8179 - val_loss: 0.5817 - val_accuracy: 0.8332
+Epoch 5/10
+1688/1688 - 6s - loss: 0.6206 - accuracy: 0.8223 - val_loss: 0.5592 - val_accuracy: 0.8423
+Epoch 6/10
+1688/1688 - 6s - loss: 0.6051 - accuracy: 0.8279 - val_loss: 0.5485 - val_accuracy: 0.8427
+Epoch 7/10
+1688/1688 - 6s - loss: 0.5951 - accuracy: 0.8320 - val_loss: 0.5492 - val_accuracy: 0.8472
+Epoch 8/10
+1688/1688 - 6s - loss: 0.5802 - accuracy: 0.8350 - val_loss: 0.5446 - val_accuracy: 0.8443
+Epoch 9/10
+1688/1688 - 6s - loss: 0.5727 - accuracy: 0.8376 - val_loss: 0.5640 - val_accuracy: 0.8358
+Epoch 10/10
+1688/1688 - 6s - loss: 0.5636 - accuracy: 0.8407 - val_loss: 0.5016 - val_accuracy: 0.8597
+VAL  -> loss=0.5016  acc=0.8597
+TEST -> loss=0.5323 acc=0.8472
+Test Confusion Matrix (rows=true, cols=pred):
+[[862   2   9  54   3   2  59   0   9   0]
+ [  3 950   5  34   5   0   2   0   1   0]
+ [ 21   0 783  17 124   1  52   0   2   0]
+ [ 35   7   4 900  28   1  21   0   4   0]
+ [  0   1 128  43 762   0  62   0   4   0]
+ [  0   0   0   1   0 915   0  62   3  19]
+ [229   1 133  52  91   1 478   0  15   0]
+ [  0   0   0   0   0  25   0 951   0  24]
+ [  3   1   5   8   2   5  18   5 953   0]
+ [  0   0   0   0   0  23   0  58   1 918]]
+95% CI for test accuracy: [0.8401, 0.8543]
+
+=== B_lr_0.0003_drop_0.0_l2_0.0 ===
+arch=[512, 256, 128] lr=0.0003 dropout=0.0 l2=0.0 epochs=10
+Epoch 1/10
+1688/1688 - 6s - loss: 0.8896 - accuracy: 0.6800 - val_loss: 0.6251 - val_accuracy: 0.7660
+Epoch 2/10
+1688/1688 - 5s - loss: 0.5801 - accuracy: 0.7876 - val_loss: 0.5292 - val_accuracy: 0.8037
+Epoch 3/10
+1688/1688 - 5s - loss: 0.5101 - accuracy: 0.8147 - val_loss: 0.5031 - val_accuracy: 0.8120
+Epoch 4/10
+1688/1688 - 5s - loss: 0.4683 - accuracy: 0.8302 - val_loss: 0.4478 - val_accuracy: 0.8358
+Epoch 5/10
+1688/1688 - 5s - loss: 0.4374 - accuracy: 0.8390 - val_loss: 0.4398 - val_accuracy: 0.8410
+Epoch 6/10
+1688/1688 - 5s - loss: 0.4149 - accuracy: 0.8483 - val_loss: 0.4095 - val_accuracy: 0.8477
+Epoch 7/10
+1688/1688 - 5s - loss: 0.3974 - accuracy: 0.8548 - val_loss: 0.4132 - val_accuracy: 0.8485
+Epoch 8/10
+1688/1688 - 5s - loss: 0.3837 - accuracy: 0.8597 - val_loss: 0.3796 - val_accuracy: 0.8570
+Epoch 9/10
+1688/1688 - 5s - loss: 0.3693 - accuracy: 0.8654 - val_loss: 0.3718 - val_accuracy: 0.8650
+Epoch 10/10
+1688/1688 - 5s - loss: 0.3598 - accuracy: 0.8684 - val_loss: 0.3699 - val_accuracy: 0.8647
+VAL  -> loss=0.3699  acc=0.8647
+TEST -> loss=0.4066 acc=0.8529
+Test Confusion Matrix (rows=true, cols=pred):
+[[777   0   6  46   4   2 153   0  12   0]
+ [  2 940   7  42   4   0   4   0   1   0]
+ [ 12   0 743  12 111   0 119   0   3   0]
+ [ 21   6   7 881  44   1  35   0   5   0]
+ [  0   1 106  29 764   0  98   0   2   0]
+ [  0   0   0   1   0 891   0  50   3  55]
+ [115   1  74  34  70   1 690   0  15   0]
+ [  0   0   0   0   0  15   0 901   0  84]
+ [  0   1   1   5   3   5  15   4 966   0]
+ [  0   0   0   0   0   2   1  21   0 976]]
+95% CI for test accuracy: [0.8460, 0.8598]
+
+=== B_lr_0.0003_drop_0.2_l2_0.0001 ===
+arch=[512, 256, 128] lr=0.0003 dropout=0.2 l2=0.0001 epochs=10
+Epoch 1/10
+1688/1688 - 6s - loss: 1.1640 - accuracy: 0.5913 - val_loss: 0.8436 - val_accuracy: 0.7270
+Epoch 2/10
+1688/1688 - 6s - loss: 0.8333 - accuracy: 0.7328 - val_loss: 0.7015 - val_accuracy: 0.7745
+Epoch 3/10
+1688/1688 - 6s - loss: 0.7296 - accuracy: 0.7781 - val_loss: 0.6459 - val_accuracy: 0.8038
+Epoch 4/10
+1688/1688 - 6s - loss: 0.6770 - accuracy: 0.7998 - val_loss: 0.6127 - val_accuracy: 0.8202
+Epoch 5/10
+1688/1688 - 6s - loss: 0.6429 - accuracy: 0.8122 - val_loss: 0.5805 - val_accuracy: 0.8323
+Epoch 6/10
+1688/1688 - 6s - loss: 0.6217 - accuracy: 0.8208 - val_loss: 0.5684 - val_accuracy: 0.8383
+Epoch 7/10
+1688/1688 - 6s - loss: 0.6016 - accuracy: 0.8273 - val_loss: 0.5548 - val_accuracy: 0.8393
+Epoch 8/10
+1688/1688 - 6s - loss: 0.5839 - accuracy: 0.8335 - val_loss: 0.5533 - val_accuracy: 0.8415
+Epoch 9/10
+1688/1688 - 6s - loss: 0.5732 - accuracy: 0.8372 - val_loss: 0.5320 - val_accuracy: 0.8453
+Epoch 10/10
+1688/1688 - 6s - loss: 0.5616 - accuracy: 0.8402 - val_loss: 0.5267 - val_accuracy: 0.8458
+VAL  -> loss=0.5267  acc=0.8458
+TEST -> loss=0.5575 acc=0.8418
+Test Confusion Matrix (rows=true, cols=pred):
+[[836   1   9  35   5   3  99   0  12   0]
+ [  3 950   8  32   3   0   3   0   1   0]
+ [ 20   0 809   6  83   0  80   0   2   0]
+ [ 38   9   6 842  42   1  58   0   4   0]
+ [  0   1 167  25 710   0  93   0   4   0]
+ [  0   0   0   1   0 902   0  41   8  48]
+ [175   1 144  22  73   1 569   0  15   0]
+ [  0   0   0   0   0  37   0 885   0  78]
+ [  1   1   2   3   4   4  30   4 950   1]
+ [  0   0   0   0   0  10   0  24   1 965]]
+95% CI for test accuracy: [0.8346, 0.8490]
