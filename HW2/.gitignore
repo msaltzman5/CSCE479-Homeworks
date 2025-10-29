@@ -1,8 +1,8 @@
-# ================================================
-# CSCE 479 HW2 - TensorFlow + Slurm + HPC Cluster
-# ================================================
+# ==========================================================
+# CSCE 479 Homeworks - Global .gitignore (TensorFlow + Slurm)
+# ==========================================================
 
-# ---- Python cache & virtual envs ----
+# ---- Python bytecode & virtual environments ----
 __pycache__/
 *.py[cod]
 *.pyo
@@ -11,30 +11,37 @@ __pycache__/
 *.egg-info/
 .env/
 .venv/
-env/
 venv/
+env/
 pip-wheel-metadata/
 build/
 dist/
 
-# ---- TensorFlow & training artifacts ----
+# ---- TensorFlow / Machine Learning artifacts ----
 logs/
-checkpoints/
 runs/
+checkpoints/
 events.out.tfevents*
-*.h5
 *.ckpt*
+*.h5
 *.pb
-*.tfrecord
 *.npz
+*.tfrecord
+artifacts/
+models/
+saved_models/
 
-# ---- TensorBoard & cache files ----
-.cache/
+# ---- TensorFlow Datasets cache ----
+tensorflow-datasets/
 .tfds/
+tfds/
+datasets/
 dataset_info.json
+.cache/
 *tfds_download*
+*tfds_metadata*
 
-# ---- Slurm / HPC output ----
+# ---- Slurm / HPC job output ----
 slurm-*.out
 slurm-*.err
 *.out
@@ -42,19 +49,34 @@ slurm-*.err
 *.log
 *.o*
 *.e*
+nohup.out
 job_scripts/
 jobs/
-nohup.out
+*.sbatch
+*.sh~
 
-# ---- System & editor files ----
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-*.swp
-*.swo
+# ---- Temporary / Scratch files ----
+tmp/
+temp/
+scratch/
+__temp__/
+test_output/
+results/
+checkpoints_tmp/
 
-# ---- LaTeX build outputs ----
+# ---- Data files ----
+data/
+*.csv
+*.parquet
+*.zip
+*.tar.gz
+*.gz
+*.hdf5
+*.pkl
+*.npy
+*.npz
+
+# ---- LaTeX build artifacts ----
 *.aux
 *.bbl
 *.blg
@@ -63,26 +85,23 @@ Thumbs.db
 *.out
 *.lof
 *.lot
-*.gz
 *.fdb_latexmk
 *.fls
 *.synctex.gz
 *.pdf
 
-# ---- Temporary notebooks / scratch ----
-*.ipynb_checkpoints/
-scratch/
-tmp/
-temp/
-
-# ---- Data / large files ----
-data/
-artifacts/
-*.parquet
-*.zip
-*.tar.gz
-
-# ---- OS specific ----
+# ---- IDE / OS-specific ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
 ehthumbs.db
 Icon?
 Desktop.ini
+*.swp
+*.swo
+
+# ---- Notebooks & Checkpoints ----
+*.ipynb_checkpoints/
+.ipynb_checkpoints/
+*.checkpoint
