@@ -1,7 +1,7 @@
 # CSCE479-Homeworks
 
 cd into desired HW directory.
-Run sbatch ~/submit_gpu.sh python main.py
+Run `sbatch ~/submit_gpu.sh python main.py`
 
 `submit_gpu.sh`
 ```
