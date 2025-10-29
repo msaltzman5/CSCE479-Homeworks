@@ -1,0 +1,88 @@
+# ================================================
+# CSCE 479 HW2 - TensorFlow + Slurm + HPC Cluster
+# ================================================
+
+# ---- Python cache & virtual envs ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg
+*.egg-info/
+.env/
+.venv/
+env/
+venv/
+pip-wheel-metadata/
+build/
+dist/
+
+# ---- TensorFlow & training artifacts ----
+logs/
+checkpoints/
+runs/
+events.out.tfevents*
+*.h5
+*.ckpt*
+*.pb
+*.tfrecord
+*.npz
+
+# ---- TensorBoard & cache files ----
+.cache/
+.tfds/
+dataset_info.json
+*tfds_download*
+
+# ---- Slurm / HPC output ----
+slurm-*.out
+slurm-*.err
+*.out
+*.err
+*.log
+*.o*
+*.e*
+job_scripts/
+jobs/
+nohup.out
+
+# ---- System & editor files ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- LaTeX build outputs ----
+*.aux
+*.bbl
+*.blg
+*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.gz
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.pdf
+
+# ---- Temporary notebooks / scratch ----
+*.ipynb_checkpoints/
+scratch/
+tmp/
+temp/
+
+# ---- Data / large files ----
+data/
+artifacts/
+*.parquet
+*.zip
+*.tar.gz
+
+# ---- OS specific ----
+ehthumbs.db
+Icon?
+Desktop.ini
