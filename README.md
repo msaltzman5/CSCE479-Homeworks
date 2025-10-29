@@ -1,6 +1,7 @@
 # CSCE479-Homeworks
 
-Go into HW directory. Run sbatch ~/submit_gpu.sh python main.py
+cd into desired HW directory.
+Run sbatch ~/submit_gpu.sh python main.py
 
 `submit_gpu.sh`
 ```
