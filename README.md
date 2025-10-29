@@ -1,7 +1,11 @@
 # CSCE479-Homeworks
 
-cd into desired HW directory.
-Run `sbatch ~/submit_gpu.sh python main.py`
+Steps to run homework:
+1. Connect to Swan server: `https://swan-ood.unl.edu/`
+2. Interactive Apps ==> Code Server or Jupyter Lab
+3. cd into desired HW directory
+4. Run `sbatch ~/submit_gpu.sh python main.py`
+5. Access newly created `slurm` file
 
 `submit_gpu.sh`
 ```
