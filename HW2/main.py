@@ -45,11 +45,11 @@ def run_model(model, name, train_ds, val_ds, test_ds, learning_rate=1e-3, epochs
     # Make and save confusion matrix
     filename = f"{name}_confusion_matrix.png"
     print(f"Saving confusion matrix to {filename} ...")
-    confusion_matrix_plot(model, test_ds, filename, max_labels=5)
+    util.confusion_matrix_plot(model, test_ds, filename, max_labels=5)
 
     # Compute confidence interval
     n_test = sum(1 for _ in test_ds.unbatch())  # total test samples
-    ci_low, ci_high = confidence_interval(test_metrics['accuracy'], n_test)
+    ci_low, ci_high = util.confidence_interval(test_metrics['accuracy'], n_test)
     print(f"95% CI for test accuracy: [{ci_low:.4f}, {ci_high:.4f}]")
 
     return val_metrics, test_metrics
@@ -64,8 +64,8 @@ def main():
     }
 
     hyperparams = [
-        {"learning_rate": 1e-3, "epochs": 100},
-        {"learning_rate": 1e-4, "epochs": 100},
+        {"learning_rate": 1e-3, "epochs": 30},
+        {"learning_rate": 1e-4, "epochs": 40},
     ]
 
     for name, model in architectures.items():

@@ -1,4 +1,8 @@
 import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import math
 import tensorflow_datasets as tfds
 
 def parse_dataset():
@@ -24,8 +28,8 @@ def parse_dataset():
     def preprocess_img(image, label, training=False):
         image = tf.cast(image, tf.float32) / 255.0
         image = (image - MEAN) / STD
-        if training:
-            image = data_augmentation(image, training=True)
+        # if training:
+        #     image = data_augmentation(image, training=True)
         label = tf.one_hot(label, depth=100)     
         return image, label
 
