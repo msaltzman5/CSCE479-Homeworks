@@ -20,21 +20,21 @@ def run_model(model, name, train_ds, val_ds, test_ds, learning_rate=1e-3, epochs
         verbose=1
     )
 
-    # lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(
-    #     monitor='val_loss',
-    #     factor=0.5,
-    #     patience=4,
-    #     min_lr=1e-6,
-    #     verbose=1
-    # )
+    lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(
+        monitor='val_loss',
+        factor=0.5,
+        patience=4,
+        min_lr=1e-6,
+        verbose=1
+    )
 
     history = model.fit(
         train_ds,
         validation_data=val_ds,
         epochs=epochs,
         verbose=2,
-        callbacks=[early_stopping]
-        # callbacks=[early_stop, lr_scheduler]
+        # callbacks=[early_stopping]
+        callbacks=[early_stop, lr_scheduler]
     )
 
     val_metrics = model.evaluate(val_ds, return_dict=True, verbose=0)
@@ -54,8 +54,9 @@ def main():
     }
 
     hyperparams = [
-        {"learning_rate": 1e-4, "epochs": 30},
-        {"learning_rate": 5e-4, "epochs": 40}
+        {"learning_rate": 1e-3, "epochs": 100},
+        {"learning_rate": 1e-4, "epochs": 100},
+        {"learning_rate": 1e-5, "epochs": 100},
     ]
 
     for name, model in architectures.items():

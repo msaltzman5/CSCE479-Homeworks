@@ -7,10 +7,7 @@ class CNNModel(tf.keras.Model):
 
         reg = tf.keras.regularizers.l2(l2) if l2 > 0 else None
 
-        # --- Convolutional feature extractor ---
-        self.conv_layers = tf.keras.Sequential([
-            tf.keras.layers.Rescaling(1.0 / 255.0),
-        ])
+        self.conv_layers = tf.keras.Sequential([])
 
         self.dropout = dropout
         self.reg = reg
@@ -34,7 +31,6 @@ class ModelA(CNNModel):
         super(ModelA, self).__init__(num_classes, dropout, l2)
 
         self.conv_layers = tf.keras.Sequential([
-            tf.keras.layers.Rescaling(1.0 / 255.0),
             tf.keras.layers.Conv2D(32, (3, 3), activation='relu', padding='same',
                                    kernel_regularizer=self.reg),
             tf.keras.layers.MaxPooling2D((2, 2)),
@@ -56,8 +52,6 @@ class ModelB(CNNModel):
         super(ModelB, self).__init__(num_classes, dropout, l2)
 
         self.conv_layers = tf.keras.Sequential([
-            tf.keras.layers.Rescaling(1.0 / 255.0),
-
             # Block 1
             tf.keras.layers.Conv2D(64, (3, 3), padding='same', activation='relu',
                                    kernel_regularizer=self.reg),
