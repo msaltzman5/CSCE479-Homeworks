@@ -41,6 +41,17 @@ def run_model(model, name, train_ds, val_ds, test_ds, learning_rate=1e-3, epochs
 
     print(f"VAL  -> loss={val_metrics['loss']:.4f}  acc={val_metrics['accuracy']:.4f}")
     print(f"TEST -> loss={test_metrics['loss']:.4f} acc={test_metrics['accuracy']:.4f}")
+
+    # Make and save confusion matrix
+    filename = f"{name}_confusion_matrix.png"
+    print(f"Saving confusion matrix to {filename} ...")
+    confusion_matrix_plot(model, test_ds, filename, max_labels=5)
+
+    # Compute confidence interval
+    n_test = sum(1 for _ in test_ds.unbatch())  # total test samples
+    ci_low, ci_high = confidence_interval(test_metrics['accuracy'], n_test)
+    print(f"95% CI for test accuracy: [{ci_low:.4f}, {ci_high:.4f}]")
+
     return val_metrics, test_metrics
 
 

@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-# Base CNN class template (for reuse)
+# Base CNN class
 class CNNModel(tf.keras.Model):
     def __init__(self, num_classes=100, dropout=0.3, l2=0.001):
         super(CNNModel, self).__init__()
@@ -31,16 +31,20 @@ class ModelA(CNNModel):
         super(ModelA, self).__init__(num_classes, dropout, l2)
 
         self.conv_layers = tf.keras.Sequential([
+
             tf.keras.layers.Conv2D(32, (3, 3), activation='relu', padding='same',
                                    kernel_regularizer=self.reg),
             tf.keras.layers.MaxPooling2D((2, 2)),
+
 
             tf.keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same',
                                    kernel_regularizer=self.reg),
             tf.keras.layers.MaxPooling2D((2, 2)),
 
+
             tf.keras.layers.Conv2D(128, 3, activation='relu', padding='same'),
             tf.keras.layers.MaxPooling2D((2,2)),
+
 
             tf.keras.layers.Dropout(self.dropout)
         ])
@@ -52,7 +56,7 @@ class ModelB(CNNModel):
         super(ModelB, self).__init__(num_classes, dropout, l2)
 
         self.conv_layers = tf.keras.Sequential([
-            # Block 1
+
             tf.keras.layers.Conv2D(64, (3, 3), padding='same', activation='relu',
                                    kernel_regularizer=self.reg),
             tf.keras.layers.BatchNormalization(),
@@ -60,7 +64,7 @@ class ModelB(CNNModel):
                                    kernel_regularizer=self.reg),
             tf.keras.layers.MaxPooling2D((2, 2)),
 
-            # Block 2
+
             tf.keras.layers.Conv2D(128, (3, 3), padding='same', activation='relu',
                                    kernel_regularizer=self.reg),
             tf.keras.layers.BatchNormalization(),
@@ -68,11 +72,12 @@ class ModelB(CNNModel):
                                    kernel_regularizer=self.reg),
             tf.keras.layers.MaxPooling2D((2, 2)),
 
-            # Block 3
+
             tf.keras.layers.Conv2D(256, (3, 3), padding='same', activation='relu',
                                    kernel_regularizer=self.reg),
             tf.keras.layers.BatchNormalization(),
             tf.keras.layers.MaxPooling2D((2, 2)),
+
 
             tf.keras.layers.Dropout(self.dropout)
         ])
