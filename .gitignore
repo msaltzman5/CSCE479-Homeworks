@@ -1,0 +1,107 @@
+# ==========================================================
+# CSCE 479 Homeworks - Global .gitignore (TensorFlow + Slurm)
+# ==========================================================
+
+# ---- Python bytecode & virtual environments ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg
+*.egg-info/
+.env/
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+build/
+dist/
+
+# ---- TensorFlow / Machine Learning artifacts ----
+logs/
+runs/
+checkpoints/
+events.out.tfevents*
+*.ckpt*
+*.h5
+*.pb
+*.npz
+*.tfrecord
+artifacts/
+models/
+saved_models/
+
+# ---- TensorFlow Datasets cache ----
+tensorflow-datasets/
+.tfds/
+tfds/
+datasets/
+dataset_info.json
+.cache/
+*tfds_download*
+*tfds_metadata*
+
+# ---- Slurm / HPC job output ----
+slurm-*.out
+slurm-*.err
+*.out
+*.err
+*.log
+*.o*
+*.e*
+nohup.out
+job_scripts/
+jobs/
+*.sbatch
+*.sh~
+
+# ---- Temporary / Scratch files ----
+tmp/
+temp/
+scratch/
+__temp__/
+test_output/
+results/
+checkpoints_tmp/
+
+# ---- Data files ----
+data/
+*.csv
+*.parquet
+*.zip
+*.tar.gz
+*.gz
+*.hdf5
+*.pkl
+*.npy
+*.npz
+
+# ---- LaTeX build artifacts ----
+*.aux
+*.bbl
+*.blg
+*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.pdf
+
+# ---- IDE / OS-specific ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+*.swp
+*.swo
+
+# ---- Notebooks & Checkpoints ----
+*.ipynb_checkpoints/
+.ipynb_checkpoints/
+*.checkpoint
