@@ -33,8 +33,7 @@ def run_model(model, name, train_ds, val_ds, test_ds, learning_rate=1e-3, epochs
         validation_data=val_ds,
         epochs=epochs,
         verbose=2,
-        # callbacks=[early_stopping]
-        callbacks=[early_stop, lr_scheduler]
+        callbacks=[early_stopping, lr_scheduler]
     )
 
     val_metrics = model.evaluate(val_ds, return_dict=True, verbose=0)
