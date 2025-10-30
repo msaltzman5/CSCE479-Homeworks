@@ -48,14 +48,13 @@ def main():
     train_ds, val_ds, test_ds = util.parse_dataset()
 
     architectures = {
-        "ModelA": ModelA(num_classes=100, dropout=0.3, l2=5e-5),
-        "ModelB": ModelB(num_classes=100, dropout=0.4, l2=1e-4)
+        "ModelA": ModelA(num_classes=100, dropout=0.4, l2=1e-4),
+        "ModelB": ModelB(num_classes=100, dropout=0.5, l2=5e-4)
     }
 
     hyperparams = [
         {"learning_rate": 1e-3, "epochs": 100},
         {"learning_rate": 1e-4, "epochs": 100},
-        {"learning_rate": 1e-5, "epochs": 100},
     ]
 
     for name, model in architectures.items():
