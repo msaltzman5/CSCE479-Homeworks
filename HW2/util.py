@@ -4,18 +4,20 @@ import tensorflow_datasets as tfds
 def parse_dataset():
     DATA_DIR = './tensorflow-datasets/'
 
-    # Load the CIFAR-100 dataset (includes train/test splits)
     ds = tfds.load('cifar100', data_dir=DATA_DIR, shuffle_files=True, as_supervised=True)
 
-    # Partition train set into 90% train / 10% validation
     train_ds = tfds.load('cifar100', split='train[:90%]', data_dir=DATA_DIR, as_supervised=True)
     val_ds   = tfds.load('cifar100', split='train[-10%:]', data_dir=DATA_DIR, as_supervised=True)
     test_ds  = tfds.load('cifar100', split='test', data_dir=DATA_DIR, as_supervised=True)
 
-    # Preprocess function for images and labels
+    # Preprocess images by normalizing RGB values of images and one-hot encoding labels
+    # https://gist.github.com/weiaicunzai/e623931921efefd4c331622c344d8151
+    MEAN = [0.5071, 0.4867, 0.4408]
+    STD = [0.2675, 0.2565, 0.2761]
     def preprocess_img(image, label):
-        image = tf.cast(image, tf.float32) / 255.0        # normalize to [0,1]
-        label = tf.one_hot(label, depth=100)              # convert to one-hot vector
+        image = tf.cast(image, tf.float32) / 255.0
+        image = (image - MEAN) / STD
+        label = tf.one_hot(label, depth=100)     
         return image, label
 
     BATCH_SIZE = 32
