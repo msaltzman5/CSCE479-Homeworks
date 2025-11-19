@@ -1,0 +1,130 @@
+2025-11-18 18:21:38.833225: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-11-18 18:21:39.344214: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1510] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 15401 MB memory:  -> device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:3b:00.0, compute capability: 6.0
+2025-11-18 18:21:39.598950: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+2025-11-18 18:22:12.881802: I tensorflow/stream_executor/cuda/cuda_dnn.cc:369] Loaded cuDNN version 8902
+Could not load symbol cublasGetSmCountTarget from libcublas.so.11. Error: /mnt/nrdstor/cse479/shared/envs/bin/../lib/libcublas.so.11: undefined symbol: cublasGetSmCountTarget
+
+=== BiLSTM_cfg1 ===
+Architecture: {'rnn_type': 'lstm', 'bidirectional': True}
+Hyperparams:  {'embedding_dim': 64, 'rnn_units': 64, 'dense_units': 32, 'dropout': 0.3, 'l2': 0.0001, 'learning_rate': 0.001, 'max_epochs': 20}
+Epoch 1/20
+313/313 - 25s - loss: 0.4908 - accuracy: 0.7704 - val_loss: 0.3549 - val_accuracy: 0.8674
+Epoch 2/20
+313/313 - 17s - loss: 0.3054 - accuracy: 0.9000 - val_loss: 0.3820 - val_accuracy: 0.8600
+Epoch 3/20
+313/313 - 17s - loss: 0.2703 - accuracy: 0.9238 - val_loss: 0.3713 - val_accuracy: 0.8750
+Epoch 4/20
+313/313 - 18s - loss: 0.2546 - accuracy: 0.9324 - val_loss: 0.4314 - val_accuracy: 0.8662
+Epoch 5/20
+313/313 - 17s - loss: 0.2492 - accuracy: 0.9375 - val_loss: 0.4139 - val_accuracy: 0.8706
+Epoch 6/20
+313/313 - 17s - loss: 0.2264 - accuracy: 0.9474 - val_loss: 0.4482 - val_accuracy: 0.8662
+Epoch 7/20
+313/313 - 17s - loss: 0.2251 - accuracy: 0.9464 - val_loss: 0.4454 - val_accuracy: 0.8676
+Epoch 8/20
+313/313 - 17s - loss: 0.2223 - accuracy: 0.9484 - val_loss: 0.4661 - val_accuracy: 0.8572
+Epoch 9/20
+313/313 - 17s - loss: 0.2159 - accuracy: 0.9513 - val_loss: 0.4963 - val_accuracy: 0.8638
+Epoch 10/20
+313/313 - 17s - loss: 0.1998 - accuracy: 0.9611 - val_loss: 0.4544 - val_accuracy: 0.8614
+Epoch 11/20
+313/313 - 17s - loss: 0.1990 - accuracy: 0.9596 - val_loss: 0.5205 - val_accuracy: 0.8628
+VAL  -> loss=0.3549  acc=0.8674
+TEST -> loss=0.3660 acc=0.8644
+Saved confusion matrix to BiLSTM_cfg1_confusion_matrix.png
+95% CI for test accuracy: [0.8602, 0.8686]
+
+=== BiLSTM_cfg2 ===
+Architecture: {'rnn_type': 'lstm', 'bidirectional': True}
+Hyperparams:  {'embedding_dim': 128, 'rnn_units': 128, 'dense_units': 64, 'dropout': 0.5, 'l2': 1e-05, 'learning_rate': 0.0005, 'max_epochs': 25}
+Epoch 1/25
+313/313 - 27s - loss: 0.4850 - accuracy: 0.7685 - val_loss: 0.3136 - val_accuracy: 0.8840
+Epoch 2/25
+313/313 - 20s - loss: 0.2618 - accuracy: 0.9065 - val_loss: 0.2960 - val_accuracy: 0.8874
+Epoch 3/25
+313/313 - 20s - loss: 0.2087 - accuracy: 0.9292 - val_loss: 0.3102 - val_accuracy: 0.8842
+Epoch 4/25
+313/313 - 20s - loss: 0.1647 - accuracy: 0.9467 - val_loss: 0.3507 - val_accuracy: 0.8804
+Epoch 5/25
+313/313 - 20s - loss: 0.1463 - accuracy: 0.9559 - val_loss: 0.3941 - val_accuracy: 0.8760
+Epoch 6/25
+313/313 - 20s - loss: 0.1251 - accuracy: 0.9632 - val_loss: 0.3820 - val_accuracy: 0.8712
+Epoch 7/25
+313/313 - 20s - loss: 0.1129 - accuracy: 0.9685 - val_loss: 0.3974 - val_accuracy: 0.8728
+Epoch 8/25
+313/313 - 20s - loss: 0.1059 - accuracy: 0.9702 - val_loss: 0.4636 - val_accuracy: 0.8712
+Epoch 9/25
+313/313 - 20s - loss: 0.0892 - accuracy: 0.9765 - val_loss: 0.5290 - val_accuracy: 0.8684
+Epoch 10/25
+313/313 - 20s - loss: 0.0899 - accuracy: 0.9779 - val_loss: 0.6168 - val_accuracy: 0.8592
+Epoch 11/25
+313/313 - 20s - loss: 0.0784 - accuracy: 0.9812 - val_loss: 0.6142 - val_accuracy: 0.8506
+Epoch 12/25
+313/313 - 20s - loss: 0.0742 - accuracy: 0.9834 - val_loss: 0.5998 - val_accuracy: 0.8690
+VAL  -> loss=0.2960  acc=0.8874
+TEST -> loss=0.3176 acc=0.8732
+Saved confusion matrix to BiLSTM_cfg2_confusion_matrix.png
+95% CI for test accuracy: [0.8691, 0.8773]
+
+=== BiGRU_cfg1 ===
+Architecture: {'rnn_type': 'gru', 'bidirectional': True}
+Hyperparams:  {'embedding_dim': 64, 'rnn_units': 64, 'dense_units': 32, 'dropout': 0.3, 'l2': 0.0001, 'learning_rate': 0.001, 'max_epochs': 20}
+Epoch 1/20
+313/313 - 23s - loss: 0.4440 - accuracy: 0.8062 - val_loss: 0.3518 - val_accuracy: 0.8724
+Epoch 2/20
+313/313 - 16s - loss: 0.2873 - accuracy: 0.9108 - val_loss: 0.3536 - val_accuracy: 0.8760
+Epoch 3/20
+313/313 - 16s - loss: 0.2524 - accuracy: 0.9294 - val_loss: 0.3960 - val_accuracy: 0.8728
+Epoch 4/20
+313/313 - 16s - loss: 0.2387 - accuracy: 0.9365 - val_loss: 0.3931 - val_accuracy: 0.8720
+Epoch 5/20
+313/313 - 16s - loss: 0.2285 - accuracy: 0.9428 - val_loss: 0.4178 - val_accuracy: 0.8636
+Epoch 6/20
+313/313 - 16s - loss: 0.2237 - accuracy: 0.9455 - val_loss: 0.4301 - val_accuracy: 0.8652
+Epoch 7/20
+313/313 - 16s - loss: 0.2130 - accuracy: 0.9515 - val_loss: 0.4729 - val_accuracy: 0.8514
+Epoch 8/20
+313/313 - 16s - loss: 0.2078 - accuracy: 0.9544 - val_loss: 0.4574 - val_accuracy: 0.8680
+Epoch 9/20
+313/313 - 16s - loss: 0.1976 - accuracy: 0.9582 - val_loss: 0.5450 - val_accuracy: 0.8566
+Epoch 10/20
+313/313 - 16s - loss: 0.1828 - accuracy: 0.9646 - val_loss: 0.5062 - val_accuracy: 0.8626
+Epoch 11/20
+313/313 - 16s - loss: 0.1763 - accuracy: 0.9676 - val_loss: 0.5055 - val_accuracy: 0.8638
+VAL  -> loss=0.3518  acc=0.8724
+TEST -> loss=0.3623 acc=0.8639
+Saved confusion matrix to BiGRU_cfg1_confusion_matrix.png
+95% CI for test accuracy: [0.8597, 0.8682]
+
+=== BiGRU_cfg2 ===
+Architecture: {'rnn_type': 'gru', 'bidirectional': True}
+Hyperparams:  {'embedding_dim': 128, 'rnn_units': 128, 'dense_units': 64, 'dropout': 0.5, 'l2': 1e-05, 'learning_rate': 0.0005, 'max_epochs': 25}
+Epoch 1/25
+313/313 - 26s - loss: 0.4608 - accuracy: 0.7769 - val_loss: 0.3387 - val_accuracy: 0.8656
+Epoch 2/25
+313/313 - 19s - loss: 0.2438 - accuracy: 0.9114 - val_loss: 0.3035 - val_accuracy: 0.8786
+Epoch 3/25
+313/313 - 19s - loss: 0.1902 - accuracy: 0.9355 - val_loss: 0.3595 - val_accuracy: 0.8828
+Epoch 4/25
+313/313 - 19s - loss: 0.1610 - accuracy: 0.9491 - val_loss: 0.3445 - val_accuracy: 0.8740
+Epoch 5/25
+313/313 - 19s - loss: 0.1387 - accuracy: 0.9572 - val_loss: 0.4242 - val_accuracy: 0.8700
+Epoch 6/25
+313/313 - 19s - loss: 0.1214 - accuracy: 0.9632 - val_loss: 0.4252 - val_accuracy: 0.8622
+Epoch 7/25
+313/313 - 19s - loss: 0.1016 - accuracy: 0.9727 - val_loss: 0.5028 - val_accuracy: 0.8636
+Epoch 8/25
+313/313 - 19s - loss: 0.0930 - accuracy: 0.9748 - val_loss: 0.6223 - val_accuracy: 0.8598
+Epoch 9/25
+313/313 - 19s - loss: 0.0798 - accuracy: 0.9806 - val_loss: 0.5859 - val_accuracy: 0.8648
+Epoch 10/25
+313/313 - 19s - loss: 0.0700 - accuracy: 0.9850 - val_loss: 0.6774 - val_accuracy: 0.8680
+Epoch 11/25
+313/313 - 19s - loss: 0.0701 - accuracy: 0.9843 - val_loss: 0.6298 - val_accuracy: 0.8624
+Epoch 12/25
+313/313 - 19s - loss: 0.0572 - accuracy: 0.9892 - val_loss: 0.6770 - val_accuracy: 0.8644
+VAL  -> loss=0.3035  acc=0.8786
+TEST -> loss=0.3354 acc=0.8644
+Saved confusion matrix to BiGRU_cfg2_confusion_matrix.png
+95% CI for test accuracy: [0.8602, 0.8686]
