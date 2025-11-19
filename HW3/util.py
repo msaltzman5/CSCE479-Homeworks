@@ -1,4 +1,3 @@
-# util.py
 import numpy as np
 import tensorflow as tf
 import tensorflow_datasets as tfds
@@ -17,20 +16,12 @@ SEQ_LEN = None
 
 def parse_dataset(
     max_tokens: int = 10000,
-    sequence_length: int = 256,
+    sequence_length: int = 500,
     batch_size: int = 64,
     buffer_size: int = 10000,
 ):
-    """
-    Load IMDB dataset from TFDS and return (train_ds, val_ds, test_ds, vocab_size, seq_len).
-
-    - Train: 80% of original train split
-    - Val:   20% of original train split
-    - Test:  TFDS test split
-    """
     DATA_DIR = "./tensorflow-datasets/"
 
-    # Raw splits for adapting the vectorizer
     raw_train_ds = tfds.load(
         "imdb_reviews",
         split="train",
@@ -38,7 +29,6 @@ def parse_dataset(
         as_supervised=True,
     )
 
-    # Train / validation / test splits
     train_ds_raw = tfds.load(
         "imdb_reviews",
         split="train[:80%]",
@@ -58,14 +48,12 @@ def parse_dataset(
         as_supervised=True,
     )
 
-    # Build TextVectorization layer
     vectorize_layer = tf.keras.layers.TextVectorization(
         max_tokens=max_tokens,
         output_mode="int",
         output_sequence_length=sequence_length,
     )
 
-    # Adapt on full training text
     text_only_ds = raw_train_ds.map(lambda text, label: text)
     vectorize_layer.adapt(text_only_ds)
 
@@ -78,7 +66,6 @@ def parse_dataset(
     SEQ_LEN = seq_len
 
     def preprocess_text(text, label):
-        # text: scalar string
         text_vec = vectorize_layer(text)
         return text_vec, label
 
@@ -108,15 +95,9 @@ def parse_dataset(
 
     return train_ds, val_ds, test_ds, vocab_size, seq_len
 
-
+# 2x2 confuction matrix
 def confusion_matrix_plot(model, ds, filename, class_names=CLASS_NAMES):
-    """
-    Compute and save a normalized confusion matrix.
 
-    Works for:
-    - Binary sigmoid output (shape [batch, 1])
-    - Multi-class softmax output (shape [batch, num_classes])
-    """
     y_true, y_pred = [], []
 
     for x, y in ds:
@@ -137,7 +118,7 @@ def confusion_matrix_plot(model, ds, filename, class_names=CLASS_NAMES):
     num_classes = len(class_names)
     cm = tf.math.confusion_matrix(y_true, y_pred, num_classes=num_classes).numpy()
 
-    # Normalize so values are percentages
+    # Normalize
     cm_norm = cm.astype("float") / cm.sum(axis=1, keepdims=True)
 
     plt.figure(figsize=(6, 5))
@@ -160,10 +141,8 @@ def confusion_matrix_plot(model, ds, filename, class_names=CLASS_NAMES):
     return cm
 
 
+# 95% confidence interval
 def confidence_interval(acc, n):
-    """
-    95% confidence interval for accuracy using normal approximation.
-    """
     z = 1.96  # z value for 95% confidence
     stderr = math.sqrt(acc * (1 - acc) / n)
     lower_bound = max(0.0, acc - z * stderr)

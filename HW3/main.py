@@ -1,4 +1,3 @@
-# main.py
 import tensorflow as tf
 from model import Model
 import util
@@ -36,7 +35,7 @@ def run(
 
     early_stopping = tf.keras.callbacks.EarlyStopping(
         monitor="val_loss",
-        patience=5,              # required minimum patience
+        patience=10,
         restore_best_weights=True,
     )
 
@@ -66,12 +65,13 @@ def run(
 
 
 def main():
-    # Load datasets + vocabulary info
+
+    # Load dataset and vocab
     train_ds, val_ds, test_ds, vocab_size, seq_len = util.parse_dataset()
 
-    print(f"Vocab size: {vocab_size}, sequence length: {seq_len}")
+    # print(f"Vocab size: {vocab_size}, sequence length: {seq_len}")
 
-    # Two different sequential architectures
+    # Architectures
     arches = {
         "BiLSTM": {
             "rnn_type": "lstm",
@@ -83,7 +83,7 @@ def main():
         },
     }
 
-    # Two different hyperparameter settings (per architecture)
+    # Hyperparameters
     hyperparam_settings = [
         {
             "embedding_dim": 64,
@@ -105,7 +105,6 @@ def main():
         },
     ]
 
-    # This yields 2 architectures × 2 hyperparameter settings = 4 models
     for arch_name, arch_config in arches.items():
         for i, hp in enumerate(hyperparam_settings, start=1):
             name = f"{arch_name}_cfg{i}"

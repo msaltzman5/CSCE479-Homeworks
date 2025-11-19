@@ -1,42 +1,25 @@
-# model.py
 import tensorflow as tf
 
+# Attention over time steps
 class Attention(tf.keras.layers.Layer):
-    """
-    Simple additive attention over time steps.
-    Input:  [batch, time, features]
-    Output: context [batch, features]
-    """
     def __init__(self):
         super().__init__()
         self.score_dense = tf.keras.layers.Dense(1)
 
     def call(self, inputs, mask=None):
-        # inputs: [batch, time, features]
-        scores = self.score_dense(inputs)          # [batch, time, 1]
-        scores = tf.squeeze(scores, axis=-1)       # [batch, time]
+        scores = self.score_dense(inputs)         
+        scores = tf.squeeze(scores, axis=-1)       
 
         if mask is not None:
-            # mask: [batch, time] (True for valid tokens)
-            # large negative to ignore padded positions
             scores += (1.0 - tf.cast(mask, tf.float32)) * -1e9
 
-        weights = tf.nn.softmax(scores, axis=1)    # [batch, time]
-        weights_expanded = tf.expand_dims(weights, -1)  # [batch, time, 1]
-        context = tf.reduce_sum(inputs * weights_expanded, axis=1)  # [batch, features]
+        weights = tf.nn.softmax(scores, axis=1)    
+        weights_expanded = tf.expand_dims(weights, -1)
+        context = tf.reduce_sum(inputs * weights_expanded, axis=1)
         return context
 
 
 class Model(tf.keras.Model):
-    """
-    Sequential IMDB sentiment model with attention.
-
-    - Embedding
-    - (Bi)LSTM or (Bi)GRU (return_sequences=True)
-    - Attention layer
-    - Dense + Dropout (regularization)
-    - Sigmoid output (binary sentiment)
-    """
     def __init__(
         self,
         vocab_size,
